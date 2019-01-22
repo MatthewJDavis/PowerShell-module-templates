@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest
+  schemaVersion="1.1"
+  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>ModuleTemplate</name>
+    <id>4f0eca9a-1389-4915-ac71-f177ecb8f21f</id>
+    <version>1.0.0</version>
+    <title>Module Template</title>
+    <description>Creates a PowerShell module</description>
+    <author>Matthew Davis</author>
+    <tags></tags>
+  </metadata>
+  <parameters>
+    <parameter name="FullName" type="text" prompt="Module author's name" />
+    <parameter name="ModuleName" type="text" prompt="Name of your module" />
+    <parameter name="ModuleDesc" type="text" prompt="Brief description on this module" />
+    <parameter name="Version" type="text" prompt="Initial module version"  default="0.0.1"/>
+  </parameters>
+  <content>
+  <message>
+    Creating folder structure
+  </message>
+    <file source='' destination='tests'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\public'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\private'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\classes'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\data'/>
+  <message>
+    Deploying common files
+  </message>
+    <file source='files\mkdocs.yml'   destination='mkdocs.yml'/>
+    <file source='files\LICENSE.yml'  destination='LICENSE.yml'/>
+    <file source='files\psake.ps1'    destination='psake.ps1'/>
+    <file source='files\module.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
+    <newModuleManifest 
+      destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
+      moduleVersion='$PLASTER_PARAM_Version'
+      rootModule='${PLASTER_PARAM_ModuleName}.psm1'
+      author='$PLASTER_PARAM_FullName'
+      description='$PLASTER_PARAM_ModuleDesc'
+      encoding='UTF8-NoBOM'/>
+  </content>
+</plasterManifest>
