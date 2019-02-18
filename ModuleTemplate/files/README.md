@@ -1,5 +1,7 @@
 # ReadMe Template
 
+# <%= $PLASTER_PARAM_ModuleName %>
+
 ## Heading 2
 
 ### Heading 3

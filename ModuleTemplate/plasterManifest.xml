@@ -16,6 +16,7 @@
     <parameter name="ModuleName" type="text" prompt="Name of your module" />
     <parameter name="ModuleDesc" type="text" prompt="Brief description on this module" />
     <parameter name="Version" type="text" prompt="Initial module version"  default="0.0.1"/>
+    <parameter name="PowerShellVersion" type="text" prompt="Minimum PowerShell Version"  default="5.1"/>
   </parameters>
   <content>
   <message>
@@ -34,6 +35,8 @@
     <file source='files\psake.ps1'    destination='psake.ps1'/>
     <file source='files\module.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
     <file source='files\build.ps1'    destination='build.ps1'/>
+    <templateFile source='files\README.md'    destination='README.md'/>
+    <templateFile source='files\tests\Module.Test.ps1'    destination='tests/${PLASTER_PARAM_ModuleName}.Tests.ps1'/>
     <newModuleManifest 
       destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
       moduleVersion='$PLASTER_PARAM_Version'
